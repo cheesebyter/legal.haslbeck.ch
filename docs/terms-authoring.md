@@ -29,15 +29,11 @@ Primärquellen:
 
 ## Freigabestatus
 
-Alle Module tragen `1.0.0-draft` und
-`review_status: fachlich-und-rechtlich-zu-pruefen`. Die Texte sind eine
-technische Ausgangsfassung und keine abgeschlossene Rechtsberatung.
+Die freigegebene Erstfassung aller Module trägt `1.0.0` und
+`review_status: freigegeben`.
 
-CaptHook ist seit LEGAL-031 für die technische Prüfung konfiguriert und erzeugt
-fünf ausdrücklich als Entwurf markierte AGB-Seiten. Weedli und Haslbeck.ch
-behalten `documents.terms.enabled: false`. Die Release-Sperre verhindert eine
-produktive CaptHook-Veröffentlichung bis zur fachlichen und juristischen
-Freigabe.
+CaptHook erzeugt fünf freigegebene AGB-Seiten. Weedli und Haslbeck.ch behalten
+`documents.terms.enabled: false`.
 
 ## Prüfung
 

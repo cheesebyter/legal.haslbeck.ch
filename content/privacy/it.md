@@ -1,7 +1,7 @@
 ---
 version: 1.0.0
 source_version: 1.0.0
-date: 2026-07-28
+date: 2026-07-30
 change_reason: Prima traduzione italiana dei moduli privacy CaptHook.
 review_status: approved
 ---

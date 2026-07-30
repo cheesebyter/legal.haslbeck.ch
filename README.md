@@ -49,7 +49,7 @@ Die Regeln für öffentliche, wesentliche Änderungen stehen unter
 [`Öffentliches Änderungsprotokoll`](docs/changelog.md).
 Das noch deaktivierte modulare AGB-Modell ist unter
 [`Modulares AGB-Datenmodell`](docs/terms-model.md) beschrieben.
-Die deutsche, noch ungeprüfte AGB-Ausgangsfassung ist unter
+Die freigegebene deutsche AGB-Ausgangsfassung ist unter
 [`Deutsche AGB-Ausgangsfassung`](docs/terms-authoring.md) dokumentiert.
 Metadaten, Glossar und Freigabeprozess der Übersetzungen beschreibt
 [`AGB-Übersetzungen`](docs/terms-translations.md).
@@ -64,9 +64,9 @@ Die technische Generierung ersetzt keine fachliche oder rechtliche Prüfung.
 Deutsche Ausgangstexte und Übersetzungen dürfen erst nach dokumentierter
 Prüfung produktiv freigegeben werden.
 
-Die gegenwärtigen Fassungen tragen deshalb die Version `1.0.0-draft` und den
-Status `fachlich-und-rechtlich-zu-pruefen`. Eine produktive Freigabe ist noch
-nicht erfolgt.
+Die dokumentierte Freigabe der Erstfassungen ist erfolgt. Sie tragen die
+Version `1.0.0`; Impressum, Datenschutz und die für CaptHook aktivierten AGB
+sind für die produktive Veröffentlichung vorbereitet.
 
 ## Verantwortlichkeit und Lizenz
 
@@ -85,7 +85,7 @@ Details stehen in [LICENSE](LICENSE).
 - `LEGAL-007`: abgeschlossen
 - `LEGAL-008`: abgeschlossen
 - `LEGAL-009`: abgeschlossen
-- `LEGAL-010`: technisch abgeschlossen; rechtliche Freigabe ausstehend
+- `LEGAL-010`: abgeschlossen und freigegeben
 - `LEGAL-011`: abgeschlossen
 - `LEGAL-012`: abgeschlossen
 - `LEGAL-013`: abgeschlossen
@@ -95,8 +95,7 @@ Details stehen in [LICENSE](LICENSE).
 - `LEGAL-017`: abgeschlossen
 - `LEGAL-018`: abgeschlossen
 - `LEGAL-019`: abgeschlossen
-- `LEGAL-020`: technisch abgeschlossen; Produktivsetzung durch ausstehende
-  rechtliche Freigabe blockiert
+- `LEGAL-020`: technisch abgeschlossen und zur Produktivsetzung freigegeben
 - `LEGAL-021`: abgeschlossen
 - `LEGAL-022`: abgeschlossen
 - `LEGAL-023`: abgeschlossen
@@ -104,16 +103,16 @@ Details stehen in [LICENSE](LICENSE).
 - `LEGAL-025`: abgeschlossen
 - `LEGAL-026`: abgeschlossen
 - `LEGAL-027`: abgeschlossen
-- `LEGAL-028`: technisch abgeschlossen; rechtliche Freigabe ausstehend
-- `LEGAL-029`: technisch abgeschlossen; fachliche und rechtliche Freigabe ausstehend
-- `LEGAL-030`: technisch abgeschlossen; Aktivierung folgt nach AGB-Freigabe
-- `LEGAL-031`: technisch abgeschlossen; CaptHook-Rechtsfreigabe ausstehend
+- `LEGAL-028`: abgeschlossen und freigegeben
+- `LEGAL-029`: abgeschlossen und freigegeben
+- `LEGAL-030`: technisch abgeschlossen; AGB-Version `1.0.0` ist freigegeben
+- `LEGAL-031`: abgeschlossen und freigegeben
 - `LEGAL-032`: als Nächstes
 
 ## Aktuell erzeugte Projekte
 
-- CaptHook: Impressum, Datenschutz und die noch ungeprüfte AGB-Entwurfsfassung
-  in fünf Sprachen. Die produktive AGB-Freigabe bleibt gesperrt.
+- CaptHook: Impressum, Datenschutz und AGB-Version `1.0.0` in fünf Sprachen;
+  zur produktiven Veröffentlichung freigegeben.
 - Weedli: Impressum und Datenschutz in fünf Sprachen; keine AGB. Berücksichtigt
   wird nur die produktive statische Website, nicht das unverbundene
   .NET-/SQLite-Grundgerüst.

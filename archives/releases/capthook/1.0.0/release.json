@@ -1,0 +1,31 @@
+{
+  "project_id": "capthook",
+  "version": "1.0.0",
+  "effective_date": "2026-07-30",
+  "material_change_process": "reconsent",
+  "languages": [
+    "de",
+    "fr",
+    "it",
+    "es",
+    "en"
+  ],
+  "modules": [
+    "scope",
+    "contracting-party-language",
+    "contract-formation",
+    "service-description",
+    "customer-account",
+    "prices-payment",
+    "term-cancellation",
+    "customer-obligations",
+    "acceptable-use",
+    "availability-changes",
+    "intellectual-property",
+    "warranty-liability",
+    "privacy-reference",
+    "suspension-termination",
+    "governing-law-jurisdiction",
+    "final-provisions"
+  ]
+}

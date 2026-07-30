@@ -141,8 +141,8 @@ test("German terms modules render all selected clauses without placeholders", as
     project.terms_config.service_description,
     project.terms_config.jurisdiction,
     `/de/${project.project_id}/datenschutz`,
-    "1.0.0-draft",
-    "2026-07-29",
+    "1.0.0",
+    "2026-07-30",
     "Projektspezifische Ergänzung"
   ]) {
     assert.ok(html.includes(value), `rendered terms miss ${value}`);
@@ -169,7 +169,7 @@ test("all four terms translations render with localized values and no placeholde
     assert.equal((html.match(/<h2>/g) ?? []).length, project.terms_modules.length);
     assert.ok(html.includes(project.terms_localizations[lang].service_description));
     assert.ok(html.includes(`/${lang}/${project.project_id}/datenschutz`));
-    assert.ok(html.includes("1.0.0-draft"));
+    assert.ok(html.includes("1.0.0"));
     assert.doesNotMatch(html, /{{|}}|{%|%}|\[\[[A-Z0-9_.-]+\]\]/);
   }
 });

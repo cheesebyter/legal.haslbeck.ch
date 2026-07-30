@@ -25,10 +25,10 @@ Die Leistungsgrenzen stimmen mit CaptHook überein:
 | Free | CHF 0 | 3 | 2 | 500 | Standard |
 | Pro | CHF 9/Monat | 50 | 10 | 50.000 | E-Mail |
 
-Die Fassung bleibt `1.0.0-draft`. Sie wird zwar für die Prüfung in fünf
-Sprachen gebaut, aber die Release-Sperre verhindert eine produktive
-Veröffentlichung. CaptHook lässt bis zur Konfiguration einer freigegebenen
-Snapshot-Version keinen neuen Pro-Checkout zu.
+Die Fassung `1.0.0` ist in fünf Sprachen freigegeben und darf produktiv
+veröffentlicht sowie in den Bestellprozess eingebunden werden. Der neue
+Pro-Checkout bleibt weiterhin von der Konfiguration dieser unveränderlichen
+Snapshot-Version abhängig.
 
 ## Weedli
 

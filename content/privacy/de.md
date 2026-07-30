@@ -1,7 +1,7 @@
 ---
 version: 1.0.0
 source_version: 1.0.0
-date: 2026-07-28
+date: 2026-07-30
 change_reason: Erste modulare Fassung auf Basis der implementierten CaptHook-Funktionen.
 review_status: freigegeben
 ---

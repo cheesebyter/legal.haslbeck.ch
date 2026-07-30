@@ -62,7 +62,7 @@ test("every page contains project and version data without placeholders", async 
         if (!project.documents[document].enabled) continue;
         const file = path.join(output, lang, project.project_id, segment, "index.html");
         const html = await readFile(file, "utf8");
-        const expectedDate = document === "terms" ? "2026-07-29" : "2026-07-28";
+        const expectedDate = "2026-07-30";
         for (const value of [project.name, project.domain, operator.name, "1.0.0", expectedDate]) {
           assert.ok(html.includes(value), `${file} misses ${value}`);
         }
@@ -118,9 +118,9 @@ test("all root-relative links in generated pages resolve to generated files", as
           checked.add(urlPath);
           const target = urlPath === "/"
             ? path.join(output, "index.html")
-            : path.extname(urlPath)
-              ? path.join(output, urlPath)
-              : path.join(output, urlPath, "index.html");
+            : /\.(?:css|js|json|xml|txt|ico|png|jpe?g|svg|webp|pdf)$/i.test(urlPath)
+              ? path.join(output, urlPath.slice(1))
+              : path.join(output, urlPath.slice(1), "index.html");
           assert.ok(await exists(target), `internal link has no generated target: ${urlPath}`);
         }
       }

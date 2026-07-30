@@ -1,7 +1,7 @@
 scope:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Ambito di applicazione
@@ -9,7 +9,7 @@ scope:
 contracting-party-language:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Parte contraente e lingua contrattuale
@@ -17,7 +17,7 @@ contracting-party-language:
 contract-formation:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Conclusione del contratto
@@ -25,7 +25,7 @@ contract-formation:
 service-description:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Descrizione del servizio
@@ -33,7 +33,7 @@ service-description:
 customer-account:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Account cliente
@@ -41,7 +41,7 @@ customer-account:
 prices-payment:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Prezzi, imposte e pagamento
@@ -49,7 +49,7 @@ prices-payment:
 term-cancellation:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Durata, rinnovo e disdetta
@@ -57,7 +57,7 @@ term-cancellation:
 customer-obligations:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Obblighi della clientela
@@ -65,7 +65,7 @@ customer-obligations:
 acceptable-use:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Uso consentito e vietato
@@ -73,7 +73,7 @@ acceptable-use:
 availability-changes:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Disponibilità, manutenzione e modifiche
@@ -81,7 +81,7 @@ availability-changes:
 intellectual-property:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Proprietà intellettuale e diritti d’uso
@@ -89,7 +89,7 @@ intellectual-property:
 warranty-liability:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Garanzia e responsabilità
@@ -97,7 +97,7 @@ warranty-liability:
 privacy-reference:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Protezione dei dati
@@ -105,7 +105,7 @@ privacy-reference:
 suspension-termination:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Sospensione e cessazione del contratto
@@ -113,7 +113,7 @@ suspension-termination:
 governing-law-jurisdiction:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Diritto applicabile e foro competente
@@ -121,7 +121,7 @@ governing-law-jurisdiction:
 final-provisions:
   version: 1.0.0
   source_version: 1.0.0
-  date: 2026-07-29
+  date: 2026-07-30
   review_status: approved
   body: |
     ## Disposizioni finali

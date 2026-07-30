@@ -1,31 +1,20 @@
 capthook:
   - version: 1.0.0
-    date: 2026-07-28
+    date: 2026-07-30
     status: published
     documents:
       - imprint
       - privacy
+      - terms
     summaries:
       de: Erste modulare Fassung auf Basis der implementierten CaptHook-Funktionen.
       fr: Première version modulaire basée sur les fonctions CaptHook mises en œuvre.
       it: Prima versione modulare basata sulle funzionalità CaptHook implementate.
       es: Primera versión modular basada en las funciones implementadas de CaptHook.
       en: Initial modular version based on the implemented CaptHook features.
-  - version: 1.0.0
-    date: 2026-07-29
-    status: published
-    documents:
-      - terms
-    summaries:
-      de: Erste freigegebene AGB-Fassung für das kostenlose Angebot und das Pro-Abonnement.
-      fr: Première version approuvée des CGV pour l’offre gratuite et l’abonnement Pro.
-      it: Prima versione approvata delle CGC per l’offerta gratuita e l’abbonamento Pro.
-      es: Primera versión aprobada de las condiciones para la oferta gratuita y la suscripción Pro.
-      en: First approved terms version for the free offering and Pro subscription.
-
 weedli:
   - version: 1.0.0
-    date: 2026-07-28
+    date: 2026-07-30
     status: published
     documents:
       - imprint
@@ -39,7 +28,7 @@ weedli:
 
 haslbeck:
   - version: 1.0.0
-    date: 2026-07-28
+    date: 2026-07-30
     status: published
     documents:
       - imprint

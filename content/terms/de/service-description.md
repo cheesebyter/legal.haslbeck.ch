@@ -1,6 +1,6 @@
 ---
 version: 1.0.0
-date: 2026-07-29
+date: 2026-07-30
 review_status: freigegeben
 ---
 ## Leistungsbeschreibung

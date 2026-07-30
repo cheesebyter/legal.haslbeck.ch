@@ -1,4 +1,5 @@
 import { readFile, readdir } from "node:fs/promises";
+import tls from "node:tls";
 import { parse } from "yaml";
 
 const baseUrl = new URL(process.env.LEGAL_BASE_URL ?? "https://legal.haslbeck.ch");
@@ -26,6 +27,10 @@ for (const project of projects) {
     }
     if (project.documents.terms.enabled) {
       expected.add(new URL(`/${lang}/${project.project_id}/agb`, baseUrl).href);
+      expected.add(new URL(
+        `/${lang}/${project.project_id}/agb/version/${project.terms_config.document_version}`,
+        baseUrl
+      ).href);
     }
   }
 }
@@ -33,6 +38,75 @@ for (const project of projects) {
 const visited = new Set();
 const failures = [];
 const queue = [...expected];
+
+async function checkCertificate(hostname) {
+  return new Promise((resolve, reject) => {
+    const socket = tls.connect({
+      host: hostname,
+      port: 443,
+      servername: hostname,
+      rejectUnauthorized: true,
+      timeout: 15_000
+    }, () => {
+      const certificate = socket.getPeerCertificate();
+      socket.end();
+      const expiresAt = Date.parse(certificate.valid_to);
+      const minimumLifetime = 21 * 24 * 60 * 60 * 1000;
+      if (!Number.isFinite(expiresAt) || expiresAt - Date.now() < minimumLifetime) {
+        reject(new Error(`TLS-Zertifikat läuft zu früh ab: ${certificate.valid_to ?? "unbekannt"}`));
+        return;
+      }
+      resolve();
+    });
+    socket.once("timeout", () => socket.destroy(new Error("TLS-Prüfung hat Zeitlimit überschritten")));
+    socket.once("error", reject);
+  });
+}
+
+try {
+  await checkCertificate(baseUrl.hostname);
+  await checkCertificate("capthook.ch");
+} catch (error) {
+  failures.push(`TLS: ${error.message}`);
+}
+
+try {
+  const response = await fetch(new URL("/", baseUrl), {
+    redirect: "manual",
+    signal: AbortSignal.timeout(15_000)
+  });
+  for (const [header, expectedValue] of [
+    ["strict-transport-security", "max-age="],
+    ["x-content-type-options", "nosniff"],
+    ["content-security-policy", "default-src"]
+  ]) {
+    if (!(response.headers.get(header) ?? "").toLowerCase().includes(expectedValue)) {
+      failures.push(`${baseUrl.href}: Sicherheitsheader fehlt oder ist ungültig: ${header}`);
+    }
+  }
+  const insecure = new URL(baseUrl);
+  insecure.protocol = "http:";
+  const redirect = await fetch(insecure, {
+    redirect: "manual",
+    signal: AbortSignal.timeout(15_000)
+  });
+  if (![301, 308].includes(redirect.status) || !redirect.headers.get("location")?.startsWith("https://")) {
+    failures.push(`${insecure.href}: keine permanente HTTPS-Weiterleitung`);
+  }
+} catch (error) {
+  failures.push(`Legal-Headerprüfung: ${error.message}`);
+}
+
+try {
+  const response = await fetch("https://capthook.ch/health", {
+    redirect: "error",
+    headers: { "user-agent": "legal-haslbeck-availability-monitor/1.0" },
+    signal: AbortSignal.timeout(15_000)
+  });
+  if (!response.ok) failures.push(`https://capthook.ch/health: HTTP ${response.status}`);
+} catch (error) {
+  failures.push(`https://capthook.ch/health: ${error.message}`);
+}
 
 while (queue.length) {
   const url = queue.shift();

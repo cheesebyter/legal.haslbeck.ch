@@ -9,6 +9,7 @@ COPY eleventy.config.js ./
 COPY scripts ./scripts
 COPY data ./data
 COPY content ./content
+COPY archives ./archives
 COPY projects ./projects
 COPY schemas ./schemas
 COPY templates ./templates

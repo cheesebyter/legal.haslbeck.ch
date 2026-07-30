@@ -1,0 +1,40 @@
+---
+pagination:
+  data: termsPages
+  size: 1
+  alias: termsPage
+permalink: "/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/agb/index.html"
+layout: base.njk
+document_type: terms
+eleventyComputed:
+  lang: "{{ termsPage.lang }}"
+  title: "{{ ui[termsPage.lang].terms }} {{ termsPage.project.name }}"
+  description: "{{ ui[termsPage.lang].terms }} – {{ termsPage.project.name }}"
+  canonical_url: "{{ site.base_url }}/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/agb"
+---
+<article>
+  <header>
+    <p class="eyebrow">{{ termsPage.project.name }} · {{ termsPage.project.domain }}</p>
+    <h1>{{ ui[termsPage.lang].terms }}</h1>
+    <p class="language-notice">
+      {{ ui[termsPage.lang].terms_draft_notice }}
+    </p>
+  </header>
+
+  {% renderTermsModules termsPage.project, operator, termsPage.lang %}
+
+  {% if termsPage.lang != "de" %}
+    <aside class="language-notice">
+      <p>{{ ui[termsPage.lang].german_notice }}</p>
+      <p><a href="/de/{{ termsPage.project.project_id }}/agb">{{ ui[termsPage.lang].german_terms_link }}</a></p>
+    </aside>
+  {% endif %}
+
+  <footer class="document-meta">
+    {% if "draft" not in termsPage.project.terms_config.document_version %}
+      <p><a href="/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/agb/version/{{ termsPage.project.terms_config.document_version }}">{{ ui[termsPage.lang].version }} {{ termsPage.project.terms_config.document_version }}</a></p>
+    {% endif %}
+    <p><a href="/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/datenschutz">{{ ui[termsPage.lang].privacy }}</a></p>
+    <p><a href="/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/aenderungen">{{ ui[termsPage.lang].changelog }}</a></p>
+  </footer>
+</article>

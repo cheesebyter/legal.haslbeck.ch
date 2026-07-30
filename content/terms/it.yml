@@ -1,0 +1,128 @@
+scope:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Ambito di applicazione
+    Le presenti condizioni generali si applicano all’uso di **{{ project.name }}** su **{{ project.domain }}** da parte di {% if terms.audience == "consumers" %}consumatrici e consumatori{% elif terms.audience == "businesses" %}imprese e lavoratori indipendenti{% else %}consumatrici, consumatori e imprese{% endif %}. Condizioni divergenti della clientela valgono solo se accettate espressamente dal gestore in forma testuale. Restano salvi i diritti legali imperativi.
+contracting-party-language:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Parte contraente e lingua contrattuale
+    La parte contraente è {{ operator.name }}, {{ operator.address.street }}, {{ operator.address.postal_code }} {{ operator.address.city }}, {{ operator.address.country }}. Il tedesco è la lingua contrattuale vincolante. Le traduzioni facilitano la comprensione; nei limiti consentiti dalla legge prevale la versione tedesca.
+contract-formation:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Conclusione del contratto
+    {% if terms.contract_formation == "online" %}La presentazione dell’offerta invita a formulare una proposta. Il contratto si conclude quando la clientela completa l’ordine o la registrazione, accetta attivamente le presenti condizioni e il gestore conferma elettronicamente l’accettazione o attiva il servizio.{% elif terms.contract_formation == "manual" %}Il contratto si conclude mediante dichiarazioni concordanti del gestore e della clientela in forma testuale.{% else %}Per questo servizio non è previsto un contratto oneroso separato.{% endif %}
+service-description:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Descrizione del servizio
+    {{ terms.service_description }} Fa fede l’ambito descritto per il piano scelto alla conclusione del contratto. Le funzioni non espressamente promesse non sono dovute.
+customer-account:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Account cliente
+    {% if terms.account_required %}È necessario un account personale. Le credenziali e gli account collegati devono essere protetti da accessi non autorizzati. La clientela risponde delle attività svolte da sé o da persone autorizzate tramite l’account.{% else %}Non è necessario un account cliente.{% endif %}
+prices-payment:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Prezzi, imposte e pagamento
+    {% if terms.pricing_model == "free" %}Il servizio è gratuito.{% else %}{{ terms.price_description }} Si applicano i prezzi indicati alla conclusione del contratto in {{ terms.currency }}. {% if terms.tax_included %}Le imposte applicabili sono incluse nel prezzo finale indicato.{% else %}Le imposte applicabili sono indicate separatamente nei limiti consentiti dalla legge.{% endif %} I pagamenti scadono nei momenti indicati durante l’ordine.{% endif %}
+term-cancellation:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Durata, rinnovo e disdetta
+    {% if terms.term_model == "indefinite" %}Il contratto è a tempo indeterminato.{% else %}Il contratto dura per il periodo fisso concordato.{% endif %} {% if terms.renewal == "automatic" %}Si rinnova automaticamente dopo il periodo di fatturazione concordato salvo disdetta tempestiva.{% elif terms.renewal == "manual" %}Il rinnovo richiede un nuovo accordo.{% else %}Non è previsto il rinnovo automatico.{% endif %} {{ terms.cancellation_notice }}
+customer-obligations:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Obblighi della clientela
+    La clientela fornisce dati corretti e aggiornati, protegge gli accessi e usa il servizio come concordato. È responsabile della liceità dei contenuti trasmessi e dei trattamenti avviati nonché del rispetto dei diritti di terzi.
+acceptable-use:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Uso consentito e vietato
+    Sono vietati in particolare usi illeciti, fraudolenti o abusivi, contenuti dannosi, interferenze con sicurezza o disponibilità, accessi non autorizzati e carichi sproporzionati. La ricerca di sicurezza legalmente consentita resta ammessa se responsabile e priva di disturbi evitabili.
+availability-changes:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Disponibilità, manutenzione e modifiche
+    La disponibilità ininterrotta non è garantita salvo diverso accordo. {{ terms.maintenance_notice }} Il gestore può sviluppare il servizio per motivi oggettivi senza comprometterne irragionevolmente l’utilità essenziale. Le modifiche sostanziali sfavorevoli sono annunciate adeguatamente.
+intellectual-property:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Proprietà intellettuale e diritti d’uso
+    I diritti su software, design, marchi e contenuti restano ai rispettivi titolari. Per la durata del contratto la clientela riceve: {{ terms.license_scope }}. Conserva i diritti sui propri contenuti e concede al gestore solo quelli necessari all’esecuzione del contratto.
+warranty-liability:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Garanzia e responsabilità
+    Si applicano le norme imperative. Nei limiti consentiti dalla legge il gestore non risponde per negligenza lieve, danni indiretti o lucro cessante. Sono esclusi in particolare danni personali, dolo, colpa grave e casi in cui la limitazione è vietata. La clientela resta responsabile di ragionevoli copie di sicurezza.
+privacy-reference:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Protezione dei dati
+    Le informazioni sul trattamento dei dati personali figurano nell’[informativa sulla privacy](/it/{{ project.project_id }}/datenschutz). Se necessario per uno specifico trattamento per conto della clientela viene concluso un accordo separato.
+suspension-termination:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Sospensione e cessazione del contratto
+    Il gestore può sospendere l’accesso o risolvere per giusta causa, in particolare per: {{ terms.termination_reasons | join(", ") }}. Se ragionevole, concede prima un termine adeguato per rimediare. Restano riservate misure urgenti a tutela di persone, dati o infrastrutture e i diritti legali.
+governing-law-jurisdiction:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Diritto applicabile e foro competente
+    Si applica il diritto svizzero. Il foro competente è {{ terms.jurisdiction }}, salvo fori legali imperativi. In particolare non sono limitati i fori e le tutele imperative per consumatrici e consumatori.
+final-provisions:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Disposizioni finali
+    Se una disposizione è invalida o inapplicabile, le altre restano valide nei limiti di legge e la norma legale sostituisce quella interessata. Le modifiche sono pubblicate in una nuova versione datata e si applicano ai contratti esistenti solo secondo i requisiti contrattuali e legali.

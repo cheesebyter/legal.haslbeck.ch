@@ -1,0 +1,68 @@
+self-hosted-eu:
+  name: Eigene Serverinfrastruktur
+  seat: Europäische Union
+  category: hosting
+  external: false
+  purpose: Betrieb der Anwendung, Datenbank, Warteschlange und Server-Protokolle.
+  links: {}
+
+github-oauth:
+  name: GitHub, Inc.
+  seat: Vereinigte Staaten
+  category: authentication
+  external: true
+  purpose: Optionaler Login über GitHub OAuth.
+  links:
+    privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
+    terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-service
+
+google-oauth:
+  name: Google LLC
+  seat: Vereinigte Staaten
+  category: authentication
+  external: true
+  purpose: Optionaler Login über Google OAuth mit dem Berechtigungsumfang openid.
+  links:
+    privacy: https://policies.google.com/privacy
+    terms: https://policies.google.com/terms
+
+stripe:
+  name: Stripe Payments Europe, Limited
+  seat: Irland
+  category: payment
+  external: true
+  purpose: Zahlungsabwicklung und Verwaltung kostenpflichtiger Abonnemente.
+  links:
+    privacy: https://stripe.com/legal/privacy-center
+    terms: https://stripe.com/legal/ssa
+
+slack-webhooks:
+  name: Slack Technologies Limited
+  seat: Irland
+  category: user-configured-destination
+  external: true
+  purpose: Zustellung von durch Nutzende konfigurierten Events an Slack Incoming Webhooks.
+  links:
+    privacy: https://slack.com/trust/privacy/privacy-policy
+    company: https://slack.com/company-information
+
+discord-webhooks:
+  name: Discord Inc.
+  seat: Vereinigte Staaten
+  category: user-configured-destination
+  external: true
+  purpose: Zustellung von durch Nutzende konfigurierten Events an Discord Webhooks.
+  links:
+    privacy: https://discord.com/privacy
+    terms: https://discord.com/terms
+
+microsoft-teams-webhooks:
+  name: Microsoft Ireland Operations Limited
+  seat: Irland
+  category: user-configured-destination
+  external: true
+  purpose: Zustellung von durch Nutzende konfigurierten Events an Microsoft Teams beziehungsweise Power Automate.
+  links:
+    privacy: https://privacy.microsoft.com/privacystatement
+    terms: https://www.microsoft.com/servicesagreement
+

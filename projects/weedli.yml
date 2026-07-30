@@ -1,0 +1,70 @@
+schema_version: 1
+project_id: weedli
+name: Weedli
+domain: weedli.ch
+contract_language: de
+supported_languages: [de, fr, it, es, en]
+
+contact:
+  email_ref: operator.email.general
+
+documents:
+  imprint: { enabled: true }
+  privacy: { enabled: true }
+  terms: { enabled: false }
+
+terms_decision:
+  required: false
+  rationale: Die produktive Weedli-Fassung ist ausschließlich eine unentgeltliche statische Informationswebsite ohne Registrierung, Bestellprozess, individuelle Leistung oder Vertragsabschluss.
+  reviewed_at: "2026-07-29"
+
+features:
+  static_website: true
+  server_logs: true
+  contact: false
+  user_accounts: false
+  backend_api: false
+  payments: false
+  essential_cookies: false
+  analytics: false
+  advertising: false
+
+providers:
+  - self-hosted-eu
+
+privacy_modules:
+  - controller
+  - data-subject-rights
+  - data-security
+  - hosting-server-logs
+  - international-transfers
+  - retention-deletion
+
+privacy_details:
+  hosting-server-logs:
+    purpose: Auslieferung der Website, Sicherstellung des Betriebs, Fehleranalyse und Missbrauchsprävention.
+    data_categories:
+      - IP-Adresse
+      - Zeitpunkt und angeforderte Ressource
+      - Browser- und technische Verbindungsdaten
+    recipients:
+      - self-hosted-eu
+    retention_refs:
+      - server_logs
+
+terms_modules: []
+
+retention:
+  server_logs:
+    basis: duration
+    value: 30
+    unit: days
+
+service:
+  production_phase: static_website
+  live_backend: false
+  note: Das vorhandene .NET-/SQLite-Backend ist ein nicht produktiv angebundenes Grundgerüst und nicht Teil dieser Fassung.
+
+source:
+  repository: E:\Project\Weedli
+  verified_at: "2026-07-28"

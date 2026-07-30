@@ -1,0 +1,64 @@
+scope:
+  title: Geltungsbereich
+  required: true
+  required_fields: [audience]
+contracting-party-language:
+  title: Vertragspartner und Vertragssprache
+  required: true
+  required_fields: [contracting_party_ref, contract_language]
+contract-formation:
+  title: Vertragsabschluss
+  required: true
+  required_fields: [contract_formation]
+service-description:
+  title: Leistungsbeschreibung
+  required: true
+  required_fields: [service_description]
+customer-account:
+  title: Kundenkonto
+  required: false
+  required_fields: [account_required]
+prices-payment:
+  title: Preise, Steuern und Zahlungsbedingungen
+  required: false
+  required_fields: [pricing_model, price_description, currency, tax_included]
+term-cancellation:
+  title: Laufzeit, Verlängerung und Kündigung
+  required: false
+  required_fields: [term_model, renewal, cancellation_notice]
+customer-obligations:
+  title: Pflichten der Kundschaft
+  required: true
+  required_fields: []
+acceptable-use:
+  title: Zulässige und unzulässige Nutzung
+  required: true
+  required_fields: []
+availability-changes:
+  title: Verfügbarkeit, Wartung und Änderungen
+  required: true
+  required_fields: [maintenance_notice]
+intellectual-property:
+  title: Geistiges Eigentum und Nutzungsrechte
+  required: true
+  required_fields: [license_scope]
+warranty-liability:
+  title: Gewährleistung und Haftung
+  required: true
+  required_fields: []
+privacy-reference:
+  title: Datenschutzverweis
+  required: true
+  required_fields: []
+suspension-termination:
+  title: Sperrung und Vertragsbeendigung
+  required: true
+  required_fields: [termination_reasons]
+governing-law-jurisdiction:
+  title: Anwendbares Recht und Gerichtsstand
+  required: true
+  required_fields: [governing_law, jurisdiction]
+final-provisions:
+  title: Schlussbestimmungen
+  required: true
+  required_fields: []

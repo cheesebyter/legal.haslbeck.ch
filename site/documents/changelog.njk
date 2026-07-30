@@ -1,0 +1,47 @@
+---
+pagination:
+  data: changelogPages
+  size: 1
+  alias: changelogPage
+permalink: "/{{ changelogPage.lang }}/{{ changelogPage.project.project_id }}/aenderungen/index.html"
+layout: base.njk
+document_type: changelog
+eleventyComputed:
+  lang: "{{ changelogPage.lang }}"
+  title: "{{ ui[changelogPage.lang].changelog_title }} {{ changelogPage.project.name }}"
+  description: "{{ ui[changelogPage.lang].changelog_intro }}"
+  canonical_url: "{{ site.base_url }}/{{ changelogPage.lang }}/{{ changelogPage.project.project_id }}/aenderungen"
+---
+<article>
+  <header>
+    <p class="eyebrow">{{ changelogPage.project.name }} · {{ changelogPage.project.domain }}</p>
+    <h1>{{ ui[changelogPage.lang].changelog_title }}</h1>
+    <p>{{ ui[changelogPage.lang].changelog_intro }}</p>
+  </header>
+
+  <ol class="changelog">
+    {% for entry in changelogPage.entries %}
+      <li>
+        <h2>{{ ui[changelogPage.lang].version }} {{ entry.version }}</h2>
+        <p>
+          <time datetime="{{ entry.date }}">{{ entry.date }}</time>
+          · {{ ui[changelogPage.lang][entry.status] }}
+        </p>
+        <p>{{ entry.summaries[changelogPage.lang] | default(entry.summaries.de) }}</p>
+        <p>
+          <strong>{{ ui[changelogPage.lang].affected_documents }}:</strong>
+          {% for document in entry.documents %}
+            {{ ui[changelogPage.lang][document] }}{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      </li>
+    {% endfor %}
+  </ol>
+
+  {% if changelogPage.lang != "de" %}
+    <aside class="language-notice">
+      <p>{{ ui[changelogPage.lang].german_notice }}</p>
+      <p><a href="/de/{{ changelogPage.project.project_id }}/aenderungen">Deutsche Fassung</a></p>
+    </aside>
+  {% endif %}
+</article>

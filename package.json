@@ -1,0 +1,29 @@
+{
+  "name": "legal-haslbeck",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Zentraler statischer Legal-Service für Haslbeck-Projekte",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "clean": "node scripts/clean.js",
+    "validate": "node scripts/validate-config.js",
+    "validate:release": "node scripts/validate-release.js",
+    "archive:terms": "node scripts/archive-terms-release.js",
+    "verify:output": "node scripts/verify-output.js",
+    "build": "npm run validate && npm run clean && node node_modules/@11ty/eleventy/cmd.cjs && npm run verify:output",
+    "dev": "node scripts/validate-config.js --preview && node node_modules/@11ty/eleventy/cmd.cjs --serve",
+    "test:pages": "node --test tests/generated-pages.test.js tests/accessibility.test.js tests/terms-model.test.js",
+    "test": "npm run build && npm run test:pages"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.2",
+    "ajv": "8.17.1",
+    "ajv-formats": "3.0.1",
+    "markdown-it": "14.1.0",
+    "nunjucks": "3.2.4",
+    "yaml": "2.8.0"
+  }
+}

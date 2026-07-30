@@ -1,0 +1,105 @@
+name: Import project configuration
+
+on:
+  repository_dispatch:
+    types:
+      - legal-project-config
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: legal-import-${{ github.event.client_payload.project_id }}
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PROJECT_ID: ${{ github.event.client_payload.project_id }}
+      PROJECT_REPOSITORY: ${{ github.event.client_payload.repository }}
+      PROJECT_COMMIT: ${{ github.event.client_payload.commit }}
+    steps:
+      - name: Check out Legal repository
+        uses: actions/checkout@v4.2.2
+        with:
+          token: ${{ secrets.PROJECT_SYNC_TOKEN }}
+
+      - name: Configure Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 22.14.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Validate dispatch and allowlisted source
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          import { parse } from "yaml";
+          const sources = parse(fs.readFileSync("data/project-sources.yml", "utf8"));
+          const id = process.env.PROJECT_ID;
+          const repository = process.env.PROJECT_REPOSITORY;
+          const commit = process.env.PROJECT_COMMIT;
+          if (!sources[id] || sources[id].repository !== repository) {
+            throw new Error(`Nicht erlaubte Projektquelle: ${id} / ${repository}`);
+          }
+          if (!/^[0-9a-f]{40}$/.test(commit)) throw new Error("Commit muss ein vollständiger SHA sein");
+          NODE
+
+      - name: Check out exact project commit
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: ${{ env.PROJECT_REPOSITORY }}
+          ref: ${{ env.PROJECT_COMMIT }}
+          token: ${{ secrets.PROJECT_SYNC_TOKEN }}
+          path: _project
+          persist-credentials: false
+
+      - name: Import project data with provenance
+        run: >-
+          node scripts/import-project-config.js
+          _project/legal/project.yml
+          "$PROJECT_ID"
+          "$PROJECT_REPOSITORY"
+          "$PROJECT_COMMIT"
+
+      - name: Validate schema and build preview
+        run: |
+          npm run validate
+          npm run build
+          npm run test:pages
+
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: legal-preview-${{ env.PROJECT_ID }}-${{ env.PROJECT_COMMIT }}
+          path: _site/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Create project-data pull request
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_SYNC_TOKEN }}
+        run: |
+          rm -rf _project
+          branch="project-data/${PROJECT_ID}-${PROJECT_COMMIT:0:12}"
+          git config user.name "legal-project-import"
+          git config user.email "legal-project-import@users.noreply.github.com"
+          git switch -c "$branch"
+          git add "projects/${PROJECT_ID}.yml"
+          git commit -m "chore(${PROJECT_ID}): import legal config ${PROJECT_COMMIT:0:12}"
+          git push --set-upstream origin "$branch"
+          gh label create project-data --color 1D76DB --description "Project configuration only" --force
+          gh pr create \
+            --base main \
+            --head "$branch" \
+            --title "Project data: ${PROJECT_ID} @ ${PROJECT_COMMIT:0:12}" \
+            --body "Automated project-data import from \`${PROJECT_REPOSITORY}@${PROJECT_COMMIT}\`. The workflow validated schemas and generated a preview artifact. This PR changes project data, not shared legal text." \
+            --label "project-data"

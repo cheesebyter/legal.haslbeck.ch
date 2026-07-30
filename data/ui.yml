@@ -1,0 +1,90 @@
+de:
+  imprint: Impressum
+  privacy: Datenschutzerklärung
+  responsible: Verantwortlich
+  version: Version
+  date: Stand
+  german_notice: Deutsch ist die verbindliche und maßgebende Fassung.
+  skip: Zum Inhalt springen
+  language_label: Sprachauswahl
+  changelog: Änderungen
+  changelog_title: Änderungsprotokoll
+  changelog_intro: Wesentliche Änderungen an den Rechtstexten dieses Projekts.
+  draft: Entwurf
+  published: Veröffentlicht
+  affected_documents: Betroffene Dokumente
+  terms: Allgemeine Geschäftsbedingungen
+  terms_draft_notice: Entwurf – diese Fassung ist noch nicht fachlich und rechtlich freigegeben.
+  german_terms_link: Deutsche AGB-Fassung
+fr:
+  imprint: Mentions légales
+  privacy: Politique de confidentialité
+  responsible: Responsable
+  version: Version
+  date: Mise à jour
+  german_notice: La version allemande est la version contractuelle contraignante et déterminante.
+  skip: Aller au contenu
+  language_label: Choix de la langue
+  changelog: Modifications
+  changelog_title: Journal des modifications
+  changelog_intro: Modifications importantes apportées aux textes juridiques de ce projet.
+  draft: Projet
+  published: Publié
+  affected_documents: Documents concernés
+  terms: Conditions générales
+  terms_draft_notice: Projet – cette version n’a pas encore fait l’objet d’une validation professionnelle et juridique.
+  german_terms_link: Version allemande des conditions générales
+it:
+  imprint: Note legali
+  privacy: Informativa sulla privacy
+  responsible: Responsabile
+  version: Versione
+  date: Aggiornamento
+  german_notice: La versione tedesca è la versione contrattuale vincolante e prevalente.
+  skip: Vai al contenuto
+  language_label: Selezione della lingua
+  changelog: Modifiche
+  changelog_title: Registro delle modifiche
+  changelog_intro: Modifiche sostanziali ai testi legali di questo progetto.
+  draft: Bozza
+  published: Pubblicato
+  affected_documents: Documenti interessati
+  terms: Condizioni generali
+  terms_draft_notice: Bozza – questa versione non è ancora stata verificata professionalmente e legalmente.
+  german_terms_link: Versione tedesca delle condizioni generali
+es:
+  imprint: Aviso legal
+  privacy: Política de privacidad
+  responsible: Responsable
+  version: Versión
+  date: Actualización
+  german_notice: La versión alemana es la versión contractual vinculante y prevalente.
+  skip: Ir al contenido
+  language_label: Selección de idioma
+  changelog: Cambios
+  changelog_title: Registro de cambios
+  changelog_intro: Cambios sustanciales en los textos legales de este proyecto.
+  draft: Borrador
+  published: Publicado
+  affected_documents: Documentos afectados
+  terms: Condiciones generales
+  terms_draft_notice: Borrador – esta versión aún no ha sido revisada profesional y jurídicamente.
+  german_terms_link: Versión alemana de las condiciones generales
+en:
+  imprint: Legal notice
+  privacy: Privacy policy
+  responsible: Responsible party
+  version: Version
+  date: Updated
+  german_notice: The German version is the binding and controlling contractual version.
+  skip: Skip to content
+  language_label: Language selection
+  changelog: Changes
+  changelog_title: Change log
+  changelog_intro: Material changes to this project's legal documents.
+  draft: Draft
+  published: Published
+  affected_documents: Affected documents
+  terms: Terms and conditions
+  terms_draft_notice: Draft – this version has not yet been professionally and legally reviewed.
+  german_terms_link: German terms and conditions

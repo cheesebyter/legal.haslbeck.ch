@@ -1,0 +1,48 @@
+contracting_party:
+  de: Vertragspartner
+  fr: partie contractante
+  it: parte contraente
+  es: parte contratante
+  en: contracting party
+customer:
+  de: Kundschaft
+  fr: clientèle
+  it: clientela
+  es: clientela
+  en: customer
+terms:
+  de: Allgemeine Geschäftsbedingungen
+  fr: conditions générales
+  it: condizioni generali
+  es: condiciones generales
+  en: terms and conditions
+service:
+  de: Leistung
+  fr: service
+  it: servizio
+  es: servicio
+  en: service
+termination:
+  de: Kündigung
+  fr: résiliation
+  it: disdetta
+  es: rescisión
+  en: termination
+liability:
+  de: Haftung
+  fr: responsabilité
+  it: responsabilità
+  es: responsabilidad
+  en: liability
+governing_law:
+  de: anwendbares Recht
+  fr: droit applicable
+  it: diritto applicabile
+  es: legislación aplicable
+  en: governing law
+jurisdiction:
+  de: Gerichtsstand
+  fr: for
+  it: foro competente
+  es: fuero
+  en: jurisdiction

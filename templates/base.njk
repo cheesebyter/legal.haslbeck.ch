@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ lang | default('de') }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ description }}">
+    <title>{{ title }} – {{ site.name }}</title>
+    {% if canonical_url %}<link rel="canonical" href="{{ canonical_url }}">{% endif %}
+    {% set pageContext = legalPage | default(changelogPage) | default(termsPage) %}
+    {% set pageLanguages = pageContext.available_languages | default(pageContext.project.supported_languages) %}
+    {% if pageContext and document_type %}
+      {% for code in pageLanguages %}
+        <link rel="alternate" hreflang="{{ code }}" href="{{ site.base_url }}/{{ code }}/{{ pageContext.project.project_id }}/{% if document_type == 'imprint' %}impressum{% elif document_type == 'privacy' %}datenschutz{% elif document_type == 'terms' %}agb{% else %}aenderungen{% endif %}">
+      {% endfor %}
+      <link rel="alternate" hreflang="x-default" href="{{ site.base_url }}/de/{{ pageContext.project.project_id }}/{% if document_type == 'imprint' %}impressum{% elif document_type == 'privacy' %}datenschutz{% elif document_type == 'terms' %}agb{% else %}aenderungen{% endif %}">
+    {% endif %}
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{{ ui[lang].skip | default("Zum Inhalt springen") }}</a>
+    <header class="site-header">
+      <a class="brand" href="/">{{ site.name }}</a>
+    </header>
+    <main id="main-content" class="legal-document">
+      {% if pageContext and document_type %}
+        <nav class="language-switcher" aria-label="{{ ui[lang].language_label }}">
+          {% for code in pageLanguages %}
+            <a href="/{{ code }}/{{ pageContext.project.project_id }}/{% if document_type == 'imprint' %}impressum{% elif document_type == 'privacy' %}datenschutz{% elif document_type == 'terms' %}agb{% else %}aenderungen{% endif %}"
+               lang="{{ code }}"
+               {% if code == legalPage.lang %}aria-current="page"{% endif %}>{{ code | upper }}</a>
+          {% endfor %}
+        </nav>
+      {% endif %}
+      {{ content | safe }}
+    </main>
+    <footer class="site-footer">
+      <p>Verantwortlich: {{ operator.name }}</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+name: Publish and deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: legal-production
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Publish immutable image
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    outputs:
+      image: ${{ steps.image.outputs.uri }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4.2.2
+
+      - name: Configure Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 22.14.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Validate production release status
+        run: npm run validate:release
+
+      - name: Validate, test and build
+        run: |
+          npm run validate
+          npm run build
+          npm run test:pages
+
+      - name: Derive immutable image URI
+        id: image
+        shell: bash
+        run: echo "uri=ghcr.io/${GITHUB_REPOSITORY,,}:${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3.4.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Docker Buildx
+        uses: docker/setup-buildx-action@v3.11.1
+
+      - name: Build and publish commit image
+        uses: docker/build-push-action@v6.18.0
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.image.outputs.uri }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy production
+    needs: release
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    environment: production
+    steps:
+      - name: Configure controller SSH key
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}
+          ANSIBLE_HOST: ${{ secrets.ANSIBLE_HOST }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "$ANSIBLE_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy exact commit through Ansible
+        shell: bash
+        env:
+          ANSIBLE_HOST: ${{ secrets.ANSIBLE_HOST }}
+          ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
+          IMAGE: ${{ needs.release.outputs.image }}
+          COMMIT: ${{ github.sha }}
+        run: |
+          ssh "$ANSIBLE_USER@$ANSIBLE_HOST" \
+            "cd /mnt/vps-management/ansible && \
+             ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/id_ed25519_ansible_controller \
+             ansible-playbook -i hosts.ini playbooks/43-delphi-deploy-legal-haslbeck.yml \
+             -e legal_image='$IMAGE' -e legal_commit='$COMMIT'"

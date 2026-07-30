@@ -1,0 +1,34 @@
+---
+pagination:
+  data: legalPages
+  size: 1
+  alias: legalPage
+permalink: "/{{ legalPage.lang }}/{{ legalPage.project.project_id }}/datenschutz/index.html"
+layout: base.njk
+document_type: privacy
+eleventyComputed:
+  lang: "{{ legalPage.lang }}"
+  title: "{{ ui[legalPage.lang].privacy }} {{ legalPage.project.name }}"
+  description: "{{ ui[legalPage.lang].privacy }} – {{ legalPage.project.name }} ({{ legalPage.project.domain }})"
+  canonical_url: "{{ site.base_url }}/{{ legalPage.lang }}/{{ legalPage.project.project_id }}/datenschutz"
+---
+<article>
+  <header>
+    <p class="eyebrow">{{ legalPage.project.name }} · {{ legalPage.project.domain }}</p>
+    <h1>{{ ui[legalPage.lang].privacy }}</h1>
+  </header>
+
+  {% renderLegalMarkdown "content/privacy/" + legalPage.lang + ".md", legalPage.project, operator %}
+
+  {% if legalPage.lang != "de" %}
+    <aside class="language-notice">
+      <p>{{ ui[legalPage.lang].german_notice }}</p>
+      <p><a href="/de/{{ legalPage.project.project_id }}/datenschutz">Deutsche Fassung</a></p>
+    </aside>
+  {% endif %}
+
+  <footer class="document-meta">
+    <p>{{ ui[legalPage.lang].version }} {{ documentMetadata.privacy[legalPage.lang].version }} · {{ ui[legalPage.lang].date }} {{ documentMetadata.privacy[legalPage.lang].date }}</p>
+    <p><a href="/{{ legalPage.lang }}/{{ legalPage.project.project_id }}/aenderungen">{{ ui[legalPage.lang].changelog }}</a></p>
+  </footer>
+</article>

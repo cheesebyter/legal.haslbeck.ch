@@ -1,0 +1,128 @@
+scope:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Champ d’application
+    Les présentes conditions générales s’appliquent à l’utilisation de **{{ project.name }}** sur **{{ project.domain }}** par {% if terms.audience == "consumers" %}des consommatrices et consommateurs{% elif terms.audience == "businesses" %}des entreprises et des indépendants{% else %}des consommatrices, consommateurs et entreprises{% endif %}. Les conditions divergentes de la clientèle ne s’appliquent qu’après acceptation expresse de l’exploitant sous forme textuelle. Les droits légaux impératifs demeurent réservés.
+contracting-party-language:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Partie contractante et langue du contrat
+    La partie contractante est {{ operator.name }}, {{ operator.address.street }}, {{ operator.address.postal_code }} {{ operator.address.city }}, {{ operator.address.country }}. L’allemand est la langue contractuelle contraignante. Les traductions facilitent la compréhension; la version allemande prévaut dans la mesure permise par la loi.
+contract-formation:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Conclusion du contrat
+    {% if terms.contract_formation == "online" %}La présentation de l’offre constitue une invitation à soumettre une offre. Le contrat est conclu lorsque la clientèle termine la commande ou l’inscription, accepte activement les présentes conditions et que l’exploitant confirme l’acceptation électroniquement ou active le service.{% elif terms.contract_formation == "manual" %}Le contrat est conclu par déclarations concordantes de l’exploitant et de la clientèle sous forme textuelle.{% else %}Aucun contrat payant distinct n’est prévu pour ce service.{% endif %}
+service-description:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Description du service
+    {{ terms.service_description }} L’étendue décrite pour l’offre choisie lors de la conclusion du contrat est déterminante. Les fonctions non expressément promises ne sont pas dues.
+customer-account:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Compte client
+    {% if terms.account_required %}Un compte personnel est requis. Les données d’accès et comptes liés doivent être protégés contre tout accès non autorisé. La clientèle répond des opérations effectuées par elle-même ou par les personnes qu’elle autorise.{% else %}Aucun compte client n’est requis.{% endif %}
+prices-payment:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Prix, impôts et paiement
+    {% if terms.pricing_model == "free" %}Le service est gratuit.{% else %}{{ terms.price_description }} Les prix affichés lors de la conclusion du contrat s’appliquent en {{ terms.currency }}. {% if terms.tax_included %}Les impôts applicables sont inclus dans le prix final affiché.{% else %}Les impôts applicables sont indiqués séparément dans la mesure permise par la loi.{% endif %} Les paiements sont exigibles aux échéances indiquées lors de la commande.{% endif %}
+term-cancellation:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Durée, renouvellement et résiliation
+    {% if terms.term_model == "indefinite" %}Le contrat est conclu pour une durée indéterminée.{% else %}Le contrat est conclu pour la durée fixe convenue.{% endif %} {% if terms.renewal == "automatic" %}Il se renouvelle automatiquement après la période de facturation convenue sauf résiliation dans les délais.{% elif terms.renewal == "manual" %}Le renouvellement exige un nouvel accord.{% else %}Il n’y a pas de renouvellement automatique.{% endif %} {{ terms.cancellation_notice }}
+customer-obligations:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Obligations de la clientèle
+    La clientèle fournit des informations exactes et actuelles, protège ses accès et utilise le service conformément au contrat. Elle garantit la licéité des contenus transmis et des traitements de données initiés ainsi que le respect des droits de tiers.
+acceptable-use:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Utilisation autorisée et interdite
+    Sont notamment interdits les usages illicites, frauduleux ou abusifs, les contenus nuisibles, les atteintes à la sécurité ou à la disponibilité, les accès non autorisés et les charges disproportionnées. La recherche de sécurité autorisée par la loi reste admise si elle est responsable et évite les perturbations.
+availability-changes:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Disponibilité, maintenance et modifications
+    Une disponibilité ininterrompue n’est pas garantie sauf convention contraire. {{ terms.maintenance_notice }} L’exploitant peut faire évoluer le service pour des motifs objectifs sans compromettre déraisonnablement son utilité essentielle. Les modifications défavorables importantes sont annoncées de manière appropriée.
+intellectual-property:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Propriété intellectuelle et droits d’utilisation
+    Les droits sur les logiciels, la conception, les marques et contenus restent à leurs titulaires. Pour la durée du contrat, la clientèle reçoit: {{ terms.license_scope }}. Elle conserve ses droits sur ses contenus et n’accorde à l’exploitant que les droits nécessaires à l’exécution du contrat.
+warranty-liability:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Garantie et responsabilité
+    Les règles légales impératives s’appliquent. Dans la mesure permise par la loi, l’exploitant ne répond pas de la négligence légère, des dommages indirects ou du gain manqué. Sont notamment réservés les lésions corporelles, l’intention, la négligence grave et les cas où une limitation est interdite. La clientèle reste responsable des sauvegardes raisonnables.
+privacy-reference:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Protection des données
+    Les informations relatives au traitement des données personnelles figurent dans la [politique de confidentialité](/fr/{{ project.project_id }}/datenschutz). Une convention séparée est conclue lorsqu’elle est nécessaire pour un traitement spécifique pour le compte de la clientèle.
+suspension-termination:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Suspension et fin du contrat
+    L’exploitant peut suspendre l’accès ou résilier pour justes motifs, notamment: {{ terms.termination_reasons | join(", ") }}. Si cela est raisonnable, un délai de remède approprié est accordé. Les mesures urgentes de protection des personnes, données ou infrastructures demeurent réservées. Les droits légaux subsistent.
+governing-law-jurisdiction:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Droit applicable et for
+    Le droit suisse s’applique. Le for est {{ terms.jurisdiction }}, sous réserve des fors légaux impératifs. Les fors et protections impératifs des consommatrices et consommateurs ne sont notamment pas limités.
+final-provisions:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Dispositions finales
+    Si une disposition est invalide ou inexécutable, les autres restent applicables dans la mesure permise par la loi et la règle légale remplace la disposition concernée. Les modifications sont publiées dans une nouvelle version datée et ne s’appliquent aux contrats existants que selon les conditions contractuelles et légales.

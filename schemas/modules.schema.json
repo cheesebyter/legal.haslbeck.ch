@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal.haslbeck.ch/schemas/modules.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["privacy", "terms"],
+  "properties": {
+    "privacy": { "$ref": "#/$defs/moduleList" },
+    "terms": { "$ref": "#/$defs/moduleList" }
+  },
+  "$defs": {
+    "moduleList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    }
+  }
+}
+

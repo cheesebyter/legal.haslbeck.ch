@@ -1,0 +1,257 @@
+schema_version: 1
+project_id: capthook
+name: CaptHook
+domain: capthook.ch
+contract_language: de
+supported_languages:
+  - de
+  - fr
+  - it
+  - es
+  - en
+
+contact:
+  email_ref: operator.email.general
+
+documents:
+  imprint:
+    enabled: true
+  privacy:
+    enabled: true
+  terms:
+    enabled: true
+
+terms_decision:
+  required: true
+  rationale: CaptHook bietet registrierten Nutzenden einen kostenlosen Tarif und ein kostenpflichtiges, monatlich über Stripe abgerechnetes Pro-Abonnement mit Online-Vertragsabschluss an.
+  reviewed_at: "2026-07-29"
+
+features:
+  contact: true
+  user_accounts: true
+  github_oauth: true
+  google_oauth: true
+  webhook_processing: true
+  outbound_webhooks: true
+  operational_email: true
+  payments: true
+  subscriptions: true
+  essential_cookies: true
+  analytics: false
+  advertising: false
+
+providers:
+  - self-hosted-eu
+  - github-oauth
+  - google-oauth
+  - stripe
+  - slack-webhooks
+  - discord-webhooks
+  - microsoft-teams-webhooks
+
+privacy_modules:
+  - controller
+  - data-subject-rights
+  - data-security
+  - hosting-server-logs
+  - contact
+  - user-accounts
+  - webhook-processing
+  - email-delivery
+  - payments
+  - essential-cookies
+  - international-transfers
+  - retention-deletion
+
+privacy_details:
+  hosting-server-logs:
+    purpose: Sicherer Betrieb, Fehleranalyse und Missbrauchsprävention.
+    data_categories:
+      - Verbindungs- und Server-Protokolldaten
+      - IP-Adresse
+      - Zeitpunkt und angeforderte Ressource
+    recipients:
+      - self-hosted-eu
+    retention_refs:
+      - server_logs
+  contact:
+    purpose: Beantwortung von Anfragen und Support.
+    data_categories:
+      - Kontaktdaten
+      - Inhalt der Anfrage
+    recipients: []
+    retention_refs:
+      - support_requests
+  user-accounts:
+    purpose: Registrierung, Anmeldung, Kontoführung und Support.
+    data_categories:
+      - GitHub-ID und GitHub-Benutzername oder Google-Kontokennung
+      - selbst gewählter Benutzername
+      - Rollen- und Erstellungsdaten
+    recipients:
+      - github-oauth
+      - google-oauth
+    retention_refs:
+      - accounts
+  webhook-processing:
+    purpose: Entgegennahme, Filterung und Weiterleitung signierter Webhook-Ereignisse.
+    data_categories:
+      - Pipe-Konfiguration und Signatur-Secret
+      - Ziel-Webhook-URLs
+      - rohe Webhook-Inhalte
+      - Zustellstatus und Fehlermeldungen
+    recipients:
+      - slack-webhooks
+      - discord-webhooks
+      - microsoft-teams-webhooks
+    retention_refs:
+      - pipes
+      - webhook_events
+      - delivery_logs
+  email-delivery:
+    purpose: Versand betrieblicher Fehler- und Systembenachrichtigungen.
+    data_categories:
+      - technische Ereignis- und Fehlerdaten
+      - konfigurierte Empfängeradresse
+    recipients: []
+    retention_refs:
+      - delivery_logs
+  payments:
+    purpose: Abschluss und Verwaltung kostenpflichtiger Pro-Abonnemente.
+    data_categories:
+      - Stripe-Kunden-ID
+      - Abonnement-ID, Tarif und Status
+      - Abrechnungszeitraum
+    recipients:
+      - stripe
+    retention_refs:
+      - subscription_records
+  essential-cookies:
+    purpose: Anmeldung und Speicherung der gewählten Sprache.
+    data_categories:
+      - verschlüsseltes Session-Cookie
+      - Sprachpräferenz
+    recipients: []
+    retention_refs:
+      - session
+
+terms_modules:
+  - scope
+  - contracting-party-language
+  - contract-formation
+  - service-description
+  - customer-account
+  - prices-payment
+  - term-cancellation
+  - customer-obligations
+  - acceptable-use
+  - availability-changes
+  - intellectual-property
+  - warranty-liability
+  - privacy-reference
+  - suspension-termination
+  - governing-law-jurisdiction
+  - final-provisions
+
+terms_config:
+  contracting_party_ref: operator
+  contract_language: de
+  audience: both
+  contract_formation: online
+  service_description: CaptHook nimmt signierte Webhook-Ereignisse entgegen, prüft sie anhand konfigurierter Regeln und leitet passende Ereignisse an Slack, Discord oder Microsoft Teams weiter. Free umfasst höchstens 3 Pipes, 2 Ziele je Pipe und 500 Ereignisse pro Monat; Pro umfasst höchstens 50 Pipes, 10 Ziele je Pipe und 50000 Ereignisse pro Monat sowie E-Mail-Support.
+  account_required: true
+  pricing_model: subscription
+  price_description: Free kostet CHF 0. Pro kostet CHF 9 pro Monat.
+  currency: CHF
+  tax_included: true
+  term_model: indefinite
+  renewal: automatic
+  cancellation_notice: Das Pro-Abonnement kann jederzeit zum Ende des laufenden monatlichen Abrechnungszeitraums gekündigt werden. Der kostenlose Vertrag kann durch Löschung des Kontos beendet werden.
+  maintenance_notice: Planbare Wartungsarbeiten werden nach Möglichkeit im Voraus angekündigt; dringende Sicherheits- und Störungsbehebungen können ohne Vorankündigung erfolgen.
+  license_scope: ein persönliches, nicht ausschließliches, nicht übertragbares und widerrufliches Recht zur vertragsgemäßen Nutzung des Dienstes
+  termination_reasons:
+    - Zahlungsverzug
+    - erheblicher oder wiederholter Verstoß gegen diese AGB
+    - missbräuchliche oder rechtswidrige Nutzung
+    - Gefährdung der Sicherheit oder Verfügbarkeit des Dienstes
+  governing_law: CH
+  jurisdiction: Rorschach, Schweiz
+  document_version: 1.0.0
+  effective_date: "2026-07-29"
+  material_change_process: reconsent
+
+terms_localizations:
+  fr:
+    service_description: CaptHook reçoit des événements webhook signés, les vérifie selon les règles configurées et transmet les événements correspondants à Slack, Discord ou Microsoft Teams. Free comprend au maximum 3 pipes, 2 destinations par pipe et 500 événements par mois; Pro comprend au maximum 50 pipes, 10 destinations par pipe, 50000 événements par mois et le support par e-mail.
+    price_description: Free coûte CHF 0. Pro coûte CHF 9 par mois.
+    cancellation_notice: L’abonnement Pro peut être résilié à tout moment pour la fin de la période mensuelle de facturation en cours. Le contrat gratuit peut être terminé par suppression du compte.
+    maintenance_notice: Les maintenances planifiées sont annoncées à l’avance si possible; les interventions urgentes de sécurité ou de dépannage peuvent avoir lieu sans préavis.
+    license_scope: un droit personnel, non exclusif, non transférable et révocable d’utiliser le service conformément au contrat
+    termination_reasons: [retard de paiement, violation grave ou répétée des présentes conditions, utilisation abusive ou illicite, mise en danger de la sécurité ou de la disponibilité du service]
+  it:
+    service_description: CaptHook riceve eventi webhook firmati, li verifica secondo le regole configurate e inoltra gli eventi corrispondenti a Slack, Discord o Microsoft Teams. Free comprende al massimo 3 pipe, 2 destinazioni per pipe e 500 eventi al mese; Pro comprende al massimo 50 pipe, 10 destinazioni per pipe, 50000 eventi al mese e supporto via e-mail.
+    price_description: Free costa CHF 0. Pro costa CHF 9 al mese.
+    cancellation_notice: L’abbonamento Pro può essere disdetto in qualsiasi momento per la fine del periodo mensile di fatturazione in corso. Il contratto gratuito può essere terminato eliminando l’account.
+    maintenance_notice: Le manutenzioni pianificate sono annunciate in anticipo ove possibile; gli interventi urgenti di sicurezza o ripristino possono avvenire senza preavviso.
+    license_scope: un diritto personale, non esclusivo, non trasferibile e revocabile di utilizzare il servizio conformemente al contratto
+    termination_reasons: [ritardo di pagamento, violazione grave o ripetuta delle presenti condizioni, uso abusivo o illecito, pericolo per la sicurezza o la disponibilità del servizio]
+  es:
+    service_description: CaptHook recibe eventos webhook firmados, los comprueba según las reglas configuradas y reenvía los eventos coincidentes a Slack, Discord o Microsoft Teams. Free incluye como máximo 3 pipes, 2 destinos por pipe y 500 eventos al mes; Pro incluye como máximo 50 pipes, 10 destinos por pipe, 50000 eventos al mes y soporte por correo.
+    price_description: Free cuesta CHF 0. Pro cuesta CHF 9 al mes.
+    cancellation_notice: La suscripción Pro puede rescindirse en cualquier momento al final del periodo mensual de facturación vigente. El contrato gratuito puede terminarse eliminando la cuenta.
+    maintenance_notice: El mantenimiento planificado se anuncia con antelación cuando sea posible; las intervenciones urgentes de seguridad o reparación pueden realizarse sin aviso.
+    license_scope: un derecho personal, no exclusivo, no transferible y revocable de usar el servicio conforme al contrato
+    termination_reasons: [impago, incumplimiento grave o reiterado de estas condiciones, uso abusivo o ilícito, riesgo para la seguridad o disponibilidad del servicio]
+  en:
+    service_description: CaptHook receives signed webhook events, checks them against configured rules and forwards matching events to Slack, Discord or Microsoft Teams. Free includes up to 3 pipes, 2 destinations per pipe and 500 events per month; Pro includes up to 50 pipes, 10 destinations per pipe, 50000 events per month and email support.
+    price_description: Free costs CHF 0. Pro costs CHF 9 per month.
+    cancellation_notice: The Pro subscription may be terminated at any time at the end of the current monthly billing period. The free contract may be ended by deleting the account.
+    maintenance_notice: Planned maintenance is announced in advance where possible; urgent security or incident work may occur without notice.
+    license_scope: a personal, non-exclusive, non-transferable and revocable right to use the service as agreed
+    termination_reasons: [late payment, material or repeated breach of these terms, abusive or unlawful use, danger to the security or availability of the service]
+
+retention:
+  server_logs:
+    basis: duration
+    value: 30
+    unit: days
+  support_requests:
+    basis: duration
+    value: 12
+    unit: months
+  accounts:
+    basis: until_deletion
+  pipes:
+    basis: until_deletion
+  webhook_events:
+    basis: until_deletion
+  delivery_logs:
+    basis: until_deletion
+  session:
+    basis: duration
+    value: 1
+    unit: years
+  subscription_records:
+    basis: legal_obligation
+    note: Aufbewahrung gemäss anwendbaren handels- und steuerrechtlichen Pflichten.
+
+service:
+  audience: developers
+  account_deletion: by_operator_request
+  event_auto_deletion: false
+  plans:
+    free:
+      billing: false
+      max_pipes: 3
+      max_destinations_per_pipe: 2
+      max_events_per_month: 500
+    pro:
+      billing: stripe_subscription
+      interval: monthly
+      max_pipes: 50
+      max_destinations_per_pipe: 10
+      max_events_per_month: 50000
+
+source:
+  repository: E:\Project\CaptHook
+  verified_at: "2026-07-28"

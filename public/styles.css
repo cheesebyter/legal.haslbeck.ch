@@ -1,0 +1,153 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  color: #17202a;
+  background: #f4f6f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  color: #fff;
+  background: #17202a;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+main {
+  width: min(100% - 2rem, 48rem);
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 0.5rem;
+}
+
+h1 {
+  line-height: 1.2;
+}
+
+.site-header,
+.site-footer {
+  width: min(100% - 2rem, 48rem);
+  margin-inline: auto;
+  padding: 1rem 0;
+}
+
+.brand {
+  color: inherit;
+  font-weight: 700;
+}
+
+.legal-document {
+  overflow-wrap: anywhere;
+}
+
+.legal-document h2 {
+  margin-top: 2rem;
+}
+
+.eyebrow,
+.document-meta,
+.site-footer {
+  color: #566573;
+}
+
+.language-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.language-switcher a {
+  padding: 0.35rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 0.25rem;
+  text-decoration: none;
+}
+
+.language-switcher a[aria-current="page"] {
+  color: #fff;
+  background: #1557a0;
+}
+
+.language-notice {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-left: 0.3rem solid #1557a0;
+  background: #eef5fc;
+}
+
+address {
+  font-style: normal;
+}
+
+a {
+  color: #1557a0;
+}
+
+a:focus-visible {
+  outline: 0.2rem solid #f39c12;
+  outline-offset: 0.2rem;
+}
+
+.changelog {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.changelog > li {
+  border-top: 1px solid #d8dee8;
+  padding: 1.5rem 0;
+}
+
+@media (max-width: 36rem) {
+  main {
+    margin-block: 0;
+    padding: 1.25rem;
+    border-radius: 0;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  .site-header,
+  .site-footer {
+    display: none;
+  }
+
+  main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    overflow-wrap: anywhere;
+  }
+
+  .language-switcher {
+    display: none;
+  }
+}

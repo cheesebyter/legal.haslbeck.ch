@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal.haslbeck.ch/schemas/operator.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "address", "email"],
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["street", "postal_code", "city", "country"],
+      "properties": {
+        "street": { "type": "string", "minLength": 1 },
+        "postal_code": { "type": "string", "minLength": 1 },
+        "city": { "type": "string", "minLength": 1 },
+        "country": { "type": "string", "minLength": 1 }
+      }
+    },
+    "email": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["general", "privacy"],
+      "properties": {
+        "general": { "type": "string", "format": "email" },
+        "privacy": { "type": "string", "format": "email" }
+      }
+    }
+  }
+}
+

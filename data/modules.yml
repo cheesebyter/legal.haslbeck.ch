@@ -1,0 +1,33 @@
+privacy:
+  - controller
+  - data-subject-rights
+  - data-security
+  - hosting-server-logs
+  - contact
+  - user-accounts
+  - webhook-processing
+  - email-delivery
+  - payments
+  - analytics
+  - essential-cookies
+  - international-transfers
+  - retention-deletion
+
+terms:
+  - scope
+  - contracting-party-language
+  - contract-formation
+  - service-description
+  - customer-account
+  - prices-payment
+  - term-cancellation
+  - customer-obligations
+  - acceptable-use
+  - availability-changes
+  - intellectual-property
+  - warranty-liability
+  - privacy-reference
+  - suspension-termination
+  - governing-law-jurisdiction
+  - final-provisions
+

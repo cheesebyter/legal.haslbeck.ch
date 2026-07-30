@@ -1,0 +1,73 @@
+name: Validate and build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: legal-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate, test and build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4.2.2
+
+      - name: Configure Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 22.14.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Check production dependencies
+        run: npm audit --omit=dev
+
+      - name: Validate configuration and translations
+        run: npm run validate
+
+      - name: Build static website
+        run: npm run build
+
+      - name: Run generated-page tests
+        run: npm run test:pages
+
+      - name: Upload static preview
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: legal-static-${{ github.sha }}
+          path: _site/
+          if-no-files-found: error
+          retention-days: 14
+
+  container:
+    name: Build container
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4.2.2
+
+      - name: Configure Docker Buildx
+        uses: docker/setup-buildx-action@v3.11.1
+
+      - name: Build immutable test image
+        uses: docker/build-push-action@v6.18.0
+        with:
+          context: .
+          push: false
+          tags: legal-haslbeck:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

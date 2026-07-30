@@ -1,0 +1,308 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal.haslbeck.ch/schemas/project.schema.json",
+  "title": "Haslbeck Legal project configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project_id",
+    "name",
+    "domain",
+    "contract_language",
+    "supported_languages",
+    "contact",
+    "documents",
+    "terms_decision",
+    "features",
+    "providers",
+    "retention"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string",
+      "pattern": "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z]{2,63}$"
+    },
+    "contract_language": {
+      "const": "de"
+    },
+    "supported_languages": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "enum": ["de", "fr", "it", "es", "en"]
+      },
+      "contains": {
+        "const": "de"
+      }
+    },
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["email_ref"],
+      "properties": {
+        "email_ref": {
+          "enum": ["operator.email.general", "operator.email.privacy"]
+        },
+        "email_override": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["imprint", "privacy", "terms"],
+      "properties": {
+        "imprint": { "$ref": "#/$defs/documentToggle" },
+        "privacy": { "$ref": "#/$defs/documentToggle" },
+        "terms": { "$ref": "#/$defs/documentToggle" }
+      }
+    },
+    "terms_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "rationale", "reviewed_at"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "rationale": { "type": "string", "minLength": 1 },
+        "reviewed_at": { "type": "string", "format": "date" }
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "minProperties": 1
+    },
+    "providers": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "provider_overrides": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "purpose": { "type": "string", "minLength": 1 },
+          "seat": { "type": "string", "minLength": 1 },
+          "note": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "privacy_modules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "privacy_details": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["purpose", "data_categories", "recipients", "retention_refs"],
+        "properties": {
+          "purpose": { "type": "string", "minLength": 1 },
+          "data_categories": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "recipients": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "retention_refs": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "terms_modules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "terms_config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contracting_party_ref",
+        "contract_language",
+        "audience",
+        "contract_formation",
+        "service_description",
+        "maintenance_notice",
+        "license_scope",
+        "termination_reasons",
+        "governing_law",
+        "jurisdiction",
+        "document_version",
+        "effective_date",
+        "material_change_process"
+      ],
+      "properties": {
+        "contracting_party_ref": { "const": "operator" },
+        "contract_language": { "const": "de" },
+        "audience": { "enum": ["consumers", "businesses", "both"] },
+        "contract_formation": { "enum": ["online", "manual", "not_applicable"] },
+        "service_description": { "type": "string", "minLength": 1 },
+        "account_required": { "type": "boolean" },
+        "pricing_model": { "enum": ["free", "subscription", "one_time", "custom"] },
+        "price_description": { "type": "string", "minLength": 1 },
+        "currency": { "enum": ["CHF", "EUR"] },
+        "tax_included": { "type": "boolean" },
+        "term_model": { "enum": ["indefinite", "fixed"] },
+        "renewal": { "enum": ["automatic", "manual", "none"] },
+        "cancellation_notice": { "type": "string", "minLength": 1 },
+        "maintenance_notice": { "type": "string", "minLength": 1 },
+        "license_scope": { "type": "string", "minLength": 1 },
+        "termination_reasons": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "governing_law": { "const": "CH" },
+        "jurisdiction": { "type": "string", "minLength": 1 },
+        "document_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-draft)?$"
+        },
+        "effective_date": { "type": "string", "format": "date" },
+        "material_change_process": { "enum": ["notify", "reconsent"] },
+        "material_change_notice_days": { "type": "integer", "minimum": 0 },
+        "clause_overrides": {
+          "type": "object",
+          "propertyNames": { "pattern": "^[a-z][a-z0-9-]*$" },
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "terms_localizations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fr": { "$ref": "#/$defs/termsLocalization" },
+        "it": { "$ref": "#/$defs/termsLocalization" },
+        "es": { "$ref": "#/$defs/termsLocalization" },
+        "en": { "$ref": "#/$defs/termsLocalization" }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/retentionRule"
+      },
+      "minProperties": 1
+    },
+    "service": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "verified_at"],
+      "properties": {
+        "repository": { "type": "string", "minLength": 1 },
+        "verified_at": { "type": "string", "format": "date" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    }
+  },
+  "$defs": {
+    "termsLocalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "service_description": { "type": "string", "minLength": 1 },
+        "price_description": { "type": "string", "minLength": 1 },
+        "cancellation_notice": { "type": "string", "minLength": 1 },
+        "maintenance_notice": { "type": "string", "minLength": 1 },
+        "license_scope": { "type": "string", "minLength": 1 },
+        "termination_reasons": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "clause_overrides": {
+          "type": "object",
+          "propertyNames": { "pattern": "^[a-z][a-z0-9-]*$" },
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "documentToggle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": { "type": "boolean" }
+      }
+    },
+    "retentionRule": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["basis"],
+          "properties": {
+            "basis": { "const": "until_deletion" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["basis", "value", "unit"],
+          "properties": {
+            "basis": { "const": "duration" },
+            "value": { "type": "integer", "minimum": 1 },
+            "unit": { "enum": ["days", "months", "years"] }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["basis", "note"],
+          "properties": {
+            "basis": { "const": "legal_obligation" },
+            "note": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,128 @@
+scope:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Scope
+    These terms and conditions apply to the use of **{{ project.name }}** at **{{ project.domain }}** by {% if terms.audience == "consumers" %}consumers{% elif terms.audience == "businesses" %}businesses and self-employed persons{% else %}consumers and businesses{% endif %}. Deviating customer terms apply only if expressly accepted by the operator in text form. Mandatory statutory rights remain unaffected.
+contracting-party-language:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Contracting party and contract language
+    The contracting party is {{ operator.name }}, {{ operator.address.street }}, {{ operator.address.postal_code }} {{ operator.address.city }}, {{ operator.address.country }}. German is the binding contract language. Translations are provided for convenience; where legally permissible, the German version prevails.
+contract-formation:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Contract formation
+    {% if terms.contract_formation == "online" %}The displayed offer is an invitation to submit an offer. The contract is formed when the customer completes the order or registration, actively accepts these terms and the operator confirms acceptance electronically or enables the service.{% elif terms.contract_formation == "manual" %}The contract is formed by corresponding declarations of the operator and customer in text form.{% else %}No separate paid contract is intended for this service.{% endif %}
+service-description:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Service description
+    {{ terms.service_description }} The scope described for the selected plan when the contract is formed applies. Functions not expressly promised are not owed.
+customer-account:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Customer account
+    {% if terms.account_required %}A personal account is required. Login credentials and linked accounts must be protected from unauthorised access. The customer is responsible for actions performed by the customer or authorised persons through the account.{% else %}No customer account is required.{% endif %}
+prices-payment:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Prices, taxes and payment
+    {% if terms.pricing_model == "free" %}The service is free of charge.{% else %}{{ terms.price_description }} The prices shown when the contract is formed apply in {{ terms.currency }}. {% if terms.tax_included %}Applicable taxes are included in the displayed final price.{% else %}Applicable taxes are shown separately where legally permissible.{% endif %} Payments are due at the times stated during ordering.{% endif %}
+term-cancellation:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Term, renewal and termination
+    {% if terms.term_model == "indefinite" %}The contract runs for an indefinite period.{% else %}The contract runs for the fixed period agreed when it is formed.{% endif %} {% if terms.renewal == "automatic" %}It renews automatically after the agreed billing period unless terminated in time.{% elif terms.renewal == "manual" %}Renewal requires a new agreement.{% else %}There is no automatic renewal.{% endif %} {{ terms.cancellation_notice }}
+customer-obligations:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Customer obligations
+    Customers must provide accurate and current information, protect access credentials and use the service only as agreed. They are responsible for ensuring that submitted content and initiated data processing are lawful and do not infringe third-party rights.
+acceptable-use:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Acceptable and prohibited use
+    Unlawful, fraudulent or abusive use, harmful content, interference with security or availability, unauthorised access and disproportionate infrastructure load are prohibited. Legally permitted security research remains allowed if conducted responsibly and without avoidable disruption.
+availability-changes:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Availability, maintenance and changes
+    Continuous availability is not guaranteed unless agreed otherwise. {{ terms.maintenance_notice }} The operator may develop the service for objective reasons if its contractual core benefit is not unreasonably impaired. Material adverse changes will be announced appropriately.
+intellectual-property:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Intellectual property and rights of use
+    Rights in software, design, trademarks and supplied content remain with their owners. For the contract term the customer receives: {{ terms.license_scope }}. Customers retain rights in their own content and grant the operator only the rights required to perform the contract.
+warranty-liability:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Warranty and liability
+    Mandatory statutory warranty and liability rules apply. Where legally permissible, the operator is not liable for slight negligence, indirect loss or lost profit. This does not apply in particular to personal injury, intent, gross negligence or cases where limitation is prohibited by law. Customers remain responsible for reasonable backups of their data.
+privacy-reference:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Privacy
+    Information on personal data processing is available in the project's [privacy policy](/en/{{ project.project_id }}/datenschutz). A separate agreement will be concluded where required for specific processing on behalf of a customer.
+suspension-termination:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Suspension and contract termination
+    The operator may temporarily suspend access or terminate for good cause, including: {{ terms.termination_reasons | join(", ") }}. Where reasonable, an appropriate cure period will be given first. Urgent measures to protect persons, data or infrastructure remain reserved. Statutory rights remain unaffected.
+governing-law-jurisdiction:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Governing law and jurisdiction
+    Swiss law applies. Jurisdiction is {{ terms.jurisdiction }} unless mandatory statutory jurisdictions prevail. In particular, mandatory consumer jurisdictions and protections are not restricted.
+final-provisions:
+  version: 1.0.0
+  source_version: 1.0.0
+  date: 2026-07-29
+  review_status: approved
+  body: |
+    ## Final provisions
+    If a provision is invalid or unenforceable, the remaining provisions continue where legally permissible and statutory law replaces the affected provision. Changes are published as a new dated version and apply to existing contracts only in accordance with contractual and statutory requirements.

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal.haslbeck.ch/schemas/terms-glossary.schema.json",
+  "type": "object",
+  "minProperties": 1,
+  "additionalProperties": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["de", "fr", "it", "es", "en"],
+    "properties": {
+      "de": { "type": "string", "minLength": 1 },
+      "fr": { "type": "string", "minLength": 1 },
+      "it": { "type": "string", "minLength": 1 },
+      "es": { "type": "string", "minLength": 1 },
+      "en": { "type": "string", "minLength": 1 }
+    }
+  }
+}

@@ -107,7 +107,7 @@ Details stehen in [LICENSE](LICENSE).
 - `LEGAL-029`: abgeschlossen und freigegeben
 - `LEGAL-030`: technisch abgeschlossen; AGB-Version `1.0.0` ist freigegeben
 - `LEGAL-031`: abgeschlossen und freigegeben
-- `LEGAL-032`: als Nächstes
+- `LEGAL-032`: abgeschlossen
 
 ## Aktuell erzeugte Projekte
 

@@ -9,6 +9,9 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 const output = path.join(root, "_site");
 const operator = parse(await readFile(path.join(root, "data/operator.yml"), "utf8"));
 const changelog = parse(await readFile(path.join(root, "data/changelog.yml"), "utf8"));
+const termsCatalog = parse(
+  await readFile(path.join(root, "data/terms-modules.yml"), "utf8")
+);
 const projectFiles = (await readdir(path.join(root, "projects")))
   .filter((file) => file.endsWith(".yml"))
   .sort();
@@ -84,6 +87,78 @@ test("translations contain the controlling-language notice and German link", asy
         );
         assert.match(html, /language-notice/);
         assert.ok(html.includes(`/de/${project.project_id}/${segment}`));
+      }
+    }
+  }
+});
+
+test("each terms-enabled project exposes five complete localized terms pages", async () => {
+  for (const project of projects.filter((candidate) => candidate.documents.terms.enabled)) {
+    assert.deepEqual(
+      [...project.supported_languages].sort(),
+      ["de", "en", "es", "fr", "it"],
+      `${project.project_id} must support exactly the five legal languages`
+    );
+
+    for (const lang of project.supported_languages) {
+      const file = path.join(output, lang, project.project_id, "agb", "index.html");
+      assert.ok(await exists(file), `terms page missing: ${project.project_id}/${lang}`);
+      const html = await readFile(file, "utf8");
+
+      for (const value of [
+        project.name,
+        project.domain,
+        operator.name,
+        project.terms_config.document_version,
+        project.terms_config.effective_date
+      ]) {
+        assert.ok(html.includes(value), `${file} misses terms identity value ${value}`);
+      }
+      assert.equal(
+        (html.match(/class="clause-meta"/g) ?? []).length,
+        project.terms_modules.length,
+        `${file} does not render exactly the activated modules`
+      );
+      assert.ok(
+        html.includes(`href="/${lang}/${project.project_id}/datenschutz"`),
+        `${file} misses privacy link`
+      );
+      assert.ok(
+        html.includes(`href="/${lang}/${project.project_id}/impressum"`),
+        `${file} misses imprint link`
+      );
+      if (lang !== "de") {
+        assert.ok(
+          html.includes(`href="/de/${project.project_id}/agb"`),
+          `${file} misses binding German terms link`
+        );
+      }
+    }
+  }
+});
+
+test("German terms pages contain every activated module and no deactivated catalog module", async () => {
+  const headings = {};
+  for (const moduleId of Object.keys(termsCatalog)) {
+    const source = await readFile(
+      path.join(root, "content", "terms", "de", `${moduleId}.md`),
+      "utf8"
+    );
+    const heading = source.match(/^##\s+(.+)$/m);
+    assert.ok(heading, `German heading missing for terms module ${moduleId}`);
+    headings[moduleId] = heading[1];
+  }
+
+  for (const project of projects.filter((candidate) => candidate.documents.terms.enabled)) {
+    const html = await readFile(
+      path.join(output, "de", project.project_id, "agb", "index.html"),
+      "utf8"
+    );
+    for (const moduleId of Object.keys(termsCatalog)) {
+      if (project.terms_modules.includes(moduleId)) {
+        assert.ok(html.includes(headings[moduleId]), `${project.project_id} misses ${moduleId}`);
+      } else {
+        assert.ok(!html.includes(headings[moduleId]), `${project.project_id} leaks ${moduleId}`);
       }
     }
   }

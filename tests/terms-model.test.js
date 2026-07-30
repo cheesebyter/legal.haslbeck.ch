@@ -115,9 +115,13 @@ test("required modules and module-specific values are enforced", () => {
   const project = enabledProject();
   project.terms_modules = project.terms_modules.filter((id) => id !== "scope");
   delete project.terms_config.currency;
+  delete project.terms_localizations.fr.price_description;
   const errors = validateTermsConfiguration(project, catalog);
   assert.ok(errors.some((message) => message.includes("Pflichtmodul fehlt: scope")));
   assert.ok(errors.some((message) => message.includes("terms_config.currency fehlt")));
+  assert.ok(errors.some((message) =>
+    message.includes("prices-payment: terms_localizations.fr.price_description fehlt")
+  ));
 });
 
 test("disabled terms reject modules and project-specific terms values", () => {
@@ -202,6 +206,28 @@ test("all translated clauses reference the current German source and glossary co
   for (const terms of Object.values(glossary)) {
     assert.deepEqual(Object.keys(terms).sort(), ["de", "en", "es", "fr", "it"]);
   }
+});
+
+test("stale translation metadata violates the source-version invariant", async () => {
+  const germanSource = await readFile(
+    new URL("../content/terms/de/scope.md", import.meta.url),
+    "utf8"
+  );
+  const germanVersion = parse(
+    germanSource.match(/^---\r?\n([\s\S]*?)\r?\n---/)[1]
+  ).version;
+  const translations = parse(
+    await readFile(new URL("../content/terms/en.yml", import.meta.url), "utf8")
+  );
+  const staleTranslation = structuredClone(translations.scope);
+  staleTranslation.source_version = "0.9.0";
+
+  assert.notEqual(
+    staleTranslation.source_version,
+    germanVersion,
+    "a stale translation must fail the same equality asserted for release catalogs"
+  );
+  assert.equal(translations.scope.source_version, germanVersion);
 });
 
 test("terms releases use immutable version URLs and refuse overwrites", async () => {

@@ -1,6 +1,6 @@
 # Produktives Deployment
 
-Ein Push auf `main` startet nach erfolgreicher CI den Workflow
+Ein Push auf `master` startet nach erfolgreicher CI den Workflow
 `Publish and deploy`. Er veröffentlicht ein unveränderliches GHCR-Image mit
 dem vollständigen Commit-SHA und übergibt genau dieses Image an
 `43-delphi-deploy-legal-haslbeck.yml`.
@@ -41,4 +41,3 @@ Das Ansible-Playbook:
 Im GitHub-Workflow `Roll back production` werden die frühere vollständige
 Image-URI und der zugehörige Commit eingegeben. Der gleiche geprüfte
 Ansible-Weg stellt diese unveränderliche Fassung wieder her.
-

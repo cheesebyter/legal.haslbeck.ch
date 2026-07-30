@@ -34,6 +34,7 @@ eleventyComputed:
     {% if "draft" not in termsPage.project.terms_config.document_version %}
       <p><a href="/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/agb/version/{{ termsPage.project.terms_config.document_version }}">{{ ui[termsPage.lang].version }} {{ termsPage.project.terms_config.document_version }}</a></p>
     {% endif %}
+    <p><a href="/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/impressum">{{ ui[termsPage.lang].imprint }}</a></p>
     <p><a href="/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/datenschutz">{{ ui[termsPage.lang].privacy }}</a></p>
     <p><a href="/{{ termsPage.lang }}/{{ termsPage.project.project_id }}/aenderungen">{{ ui[termsPage.lang].changelog }}</a></p>
   </footer>
